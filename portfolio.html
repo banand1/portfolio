@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bhaskar Anand — Engineering Leader & AI Architect</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1F3864;
+      --blue:   #2E75B6;
+      --light:  #EBF3FB;
+      --mid:    #5B8DB8;
+      --text:   #1a1a2e;
+      --muted:  #5c6b7a;
+      --white:  #ffffff;
+      --bg:     #f7f9fc;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    /* ── NAV ────────────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--navy);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 2.5rem;
+      height: 56px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    }
+    nav .logo { color: var(--white); font-weight: 700; font-size: 1rem; letter-spacing: .04em; }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a {
+      color: rgba(255,255,255,0.78); text-decoration: none;
+      font-size: .85rem; font-weight: 500; letter-spacing: .03em;
+      transition: color .2s;
+    }
+    nav ul a:hover { color: var(--white); }
+
+    /* ── HERO ───────────────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #2a4a8a 55%, var(--blue) 100%);
+      color: var(--white);
+      padding: 6rem 2.5rem 5rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-inner { position: relative; max-width: 780px; margin: 0 auto; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; letter-spacing: -.02em; margin-bottom: .5rem; }
+    .hero .subtitle {
+      font-size: 1.1rem; font-weight: 400;
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 1.6rem;
+    }
+    .hero .tags { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; margin-bottom: 2rem; }
+    .hero .tag {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 999px;
+      padding: .3rem .9rem;
+      font-size: .8rem; font-weight: 500;
+      color: rgba(255,255,255,0.9);
+    }
+    .hero .contact-links { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .hero .contact-links a {
+      display: flex; align-items: center; gap: .45rem;
+      color: rgba(255,255,255,0.9); text-decoration: none;
+      font-size: .875rem; font-weight: 500;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px; padding: .5rem 1.1rem;
+      transition: background .2s, border-color .2s;
+    }
+    .hero .contact-links a:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.4); }
+    .hero .contact-links svg { width: 16px; height: 16px; fill: currentColor; }
+
+    /* ── SECTIONS ───────────────────────────────────────────────────── */
+    section { padding: 4.5rem 2.5rem; }
+    .container { max-width: 960px; margin: 0 auto; }
+    .section-label {
+      font-size: .75rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--blue);
+      margin-bottom: .5rem;
+    }
+    h2 {
+      font-size: 1.75rem; font-weight: 700;
+      color: var(--navy); margin-bottom: 1rem;
+      letter-spacing: -.02em;
+    }
+    .divider { width: 48px; height: 4px; background: var(--blue); border-radius: 2px; margin-bottom: 2.5rem; }
+
+    /* ── ABOUT ──────────────────────────────────────────────────────── */
+    #about { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .about-text p { color: var(--muted); margin-bottom: 1rem; font-size: .975rem; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .stat-card {
+      background: var(--light);
+      border-radius: 12px; padding: 1.4rem 1.2rem;
+      text-align: center;
+      border: 1px solid #d4e6f5;
+    }
+    .stat-card .num { font-size: 2rem; font-weight: 700; color: var(--navy); line-height: 1; }
+    .stat-card .lbl { font-size: .78rem; color: var(--muted); margin-top: .3rem; font-weight: 500; }
+
+    /* ── SKILLS ─────────────────────────────────────────────────────── */
+    #skills { background: var(--bg); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+    .skill-card {
+      background: var(--white);
+      border-radius: 12px; padding: 1.5rem;
+      border: 1px solid #dce8f3;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .skill-card:hover { box-shadow: 0 6px 24px rgba(31,56,100,0.1); transform: translateY(-2px); }
+    .skill-card .sk-title {
+      font-size: .78rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--blue);
+      margin-bottom: .75rem;
+    }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .pill {
+      background: var(--light);
+      color: var(--navy);
+      font-size: .75rem; font-weight: 500;
+      padding: .25rem .65rem;
+      border-radius: 999px;
+      border: 1px solid #c4ddf0;
+    }
+
+    /* ── EXPERIENCE ─────────────────────────────────────────────────── */
+    #experience { background: var(--white); }
+    .timeline { position: relative; }
+    .timeline::before {
+      content: ''; position: absolute;
+      left: 18px; top: 6px; bottom: 0;
+      width: 2px; background: var(--light);
+    }
+    .tl-item { position: relative; padding-left: 56px; margin-bottom: 2.75rem; }
+    .tl-dot {
+      position: absolute; left: 10px; top: 4px;
+      width: 18px; height: 18px;
+      background: var(--blue); border-radius: 50%;
+      border: 3px solid var(--white);
+      box-shadow: 0 0 0 2px var(--blue);
+    }
+    .tl-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: .4rem; margin-bottom: .6rem; }
+    .tl-title { font-size: 1.05rem; font-weight: 700; color: var(--navy); }
+    .tl-company { font-size: .9rem; font-weight: 500; color: var(--blue); font-style: italic; }
+    .tl-dates {
+      font-size: .78rem; font-weight: 600; color: var(--white);
+      background: var(--blue); border-radius: 999px;
+      padding: .2rem .75rem; white-space: nowrap;
+    }
+    .tl-bullets { margin-top: .5rem; padding-left: 1rem; }
+    .tl-bullets li { color: var(--muted); font-size: .9rem; margin-bottom: .4rem; }
+
+    /* ── PROJECTS ───────────────────────────────────────────────────── */
+    #projects { background: var(--bg); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .proj-card {
+      background: var(--white);
+      border-radius: 14px; padding: 1.75rem;
+      border: 1px solid #dce8f3;
+      display: flex; flex-direction: column;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .proj-card:hover { box-shadow: 0 8px 32px rgba(31,56,100,0.12); transform: translateY(-3px); }
+    .proj-icon {
+      width: 44px; height: 44px;
+      background: var(--light); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+    .proj-card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: .4rem; }
+    .proj-card .proj-role { font-size: .78rem; color: var(--blue); font-weight: 600; margin-bottom: .75rem; }
+    .proj-card p { font-size: .875rem; color: var(--muted); flex: 1; margin-bottom: 1.1rem; line-height: 1.6; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .proj-tag {
+      font-size: .7rem; font-weight: 600;
+      background: var(--light); color: var(--navy);
+      padding: .2rem .55rem; border-radius: 6px;
+      border: 1px solid #c4ddf0;
+    }
+
+    /* ── CERTS ──────────────────────────────────────────────────────── */
+    #education { background: var(--white); }
+    .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
+    .edu-card {
+      background: var(--light);
+      border-radius: 12px; padding: 1.25rem 1.4rem;
+      border: 1px solid #d0e5f5;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .edu-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .edu-card h4 { font-size: .9rem; font-weight: 700; color: var(--navy); margin-bottom: .2rem; }
+    .edu-card p { font-size: .8rem; color: var(--muted); }
+
+    /* ── CONTACT FOOTER ─────────────────────────────────────────────── */
+    #contact {
+      background: var(--navy); color: var(--white);
+      text-align: center; padding: 3.5rem 2.5rem;
+    }
+    #contact h2 { color: var(--white); margin-bottom: .5rem; }
+    #contact p { color: rgba(255,255,255,0.7); margin-bottom: 2rem; font-size: .95rem; }
+    .contact-buttons { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .7rem 1.6rem; border-radius: 8px;
+      font-size: .9rem; font-weight: 600; text-decoration: none;
+      transition: opacity .2s, transform .15s;
+    }
+    .btn:hover { opacity: .88; transform: translateY(-1px); }
+    .btn-primary { background: var(--blue); color: var(--white); }
+    .btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.35); }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.7); }
+
+    footer {
+      background: #111827; color: rgba(255,255,255,0.4);
+      text-align: center; padding: 1rem;
+      font-size: .75rem;
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────────────── */
+    @media (max-width: 680px) {
+      nav ul { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .tl-header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="logo">Bhaskar Anand</span>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Bhaskar Anand</h1>
+    <p class="subtitle">Software Engineering Leader &amp; AI Architect &nbsp;·&nbsp; Boston, MA &nbsp;·&nbsp; US Permanent Resident</p>
+    <div class="tags">
+      <span class="tag">Engineering Manager</span>
+      <span class="tag">AI / ML Architect</span>
+      <span class="tag">Cloud Native</span>
+      <span class="tag">Healthcare &amp; Medicaid</span>
+      <span class="tag">GenAI / LLMs</span>
+      <span class="tag">Microservices</span>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:banand2k1@gmail.com">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        banand2k1@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/bhaskarananda" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+        linkedin.com/in/bhaskarananda
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">Who I Am</p>
+    <h2>About Me</h2>
+    <div class="divider"></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Software engineering leader and architect with <strong>20+ years</strong> building enterprise platforms in healthcare and government. I work at the intersection of complex regulated systems — Medicaid, EVV, HIPAA compliance — and hands-on cloud-native architecture.</p>
+        <p>I spent six years at Public Partnerships leading a 15-person cross-functional team delivering Eligibility, EVV, and Payment programs for multiple state governments. Before stepping into management I was the architect — and I've never fully left that role.</p>
+        <p>Most recently I've been consulting as AI Architect on a greenfield Medicaid payment platform, making every infrastructure and data decision: microservices, Kafka pipelines, ML-based fraud detection, and multi-state compliance from scratch.</p>
+        <p>I bring equal depth in <strong>engineering leadership</strong> (hiring, delivery, stakeholder management) and <strong>technical architecture</strong> (cloud, AI/ML, data pipelines, full-stack). Open to EM and Principal/Staff Architect roles in healthcare tech, insurtech, or regulated industries.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card"><div class="num">20+</div><div class="lbl">Years Experience</div></div>
+        <div class="stat-card"><div class="num">15</div><div class="lbl">Engineers Led</div></div>
+        <div class="stat-card"><div class="num">5+</div><div class="lbl">State Programs Delivered</div></div>
+        <div class="stat-card"><div class="num">3</div><div class="lbl">Cloud Platforms</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-label">Expertise</p>
+    <h2>Core Technical Skills</h2>
+    <div class="divider"></div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="sk-title">Leadership &amp; Delivery</div>
+        <div class="skill-pills">
+          <span class="pill">Team Management (15+)</span><span class="pill">Agile / SAFe</span><span class="pill">CI/CD</span>
+          <span class="pill">Stakeholder Management</span><span class="pill">Hiring &amp; Mentoring</span><span class="pill">Program Delivery</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-title">AI &amp; Machine Learning</div>
+        <div class="skill-pills">
+          <span class="pill">GenAI / LLMs</span><span class="pill">RAG</span><span class="pill">Vertex AI</span>
+          <span class="pill">Azure ML / OpenAI</span><span class="pill">SageMaker / Bedrock</span><span class="pill">MLOps</span>
+          <span class="pill">TensorFlow</span><span class="pill">PyTorch</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-title">Cloud &amp; Infrastructure</div>
+        <div class="skill-pills">
+          <span class="pill">GCP</span><span class="pill">AWS</span><span class="pill">Azure</span>
+          <span class="pill">Kubernetes</span><span class="pill">Docker</span><span class="pill">Terraform</span><span class="pill">Microservices</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-title">Data &amp; Pipelines</div>
+        <div class="skill-pills">
+          <span class="pill">Kafka</span><span class="pill">Spark</span><span class="pill">Airflow</span>
+          <span class="pill">BigQuery</span><span class="pill">Redshift</span><span class="pill">Snowflake</span>
+          <span class="pill">Databricks</span><span class="pill">Azure Synapse</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-title">Languages &amp; Frameworks</div>
+        <div class="skill-pills">
+          <span class="pill">Python</span><span class="pill">C#</span><span class="pill">JavaScript</span><span class="pill">Java</span>
+          <span class="pill">React.js</span><span class="pill">FastAPI</span><span class="pill">ASP.NET MVC</span><span class="pill">Entity Framework</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-title">Healthcare Domain</div>
+        <div class="skill-pills">
+          <span class="pill">Medicaid / Medicare</span><span class="pill">HIPAA</span><span class="pill">EVV</span>
+          <span class="pill">Eligibility Systems</span><span class="pill">Claims Processing</span><span class="pill">EDI Integrations</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <p class="section-label">Career</p>
+    <h2>Work Experience</h2>
+    <div class="divider"></div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-header">
+          <div>
+            <div class="tl-title">AI Architect &amp; Consultant</div>
+            <div class="tl-company">Connect2Coverage</div>
+          </div>
+          <span class="tl-dates">Aug 2025 – Present</span>
+        </div>
+        <ul class="tl-bullets">
+          <li>Sole architect of a greenfield, state-compliant Medicaid payment platform — owned all infrastructure, data, and API design decisions independently.</li>
+          <li>Designed four core modules: Family-Directed Services, Provider Management, Authorization &amp; EVV Tracking, and Secure Payments (ADP, Stripe, ACH).</li>
+          <li>Architected event-driven pipelines using Kafka for real-time claims, eligibility, and EVV processing. Applied ML-based fraud detection within claims adjudication.</li>
+          <li>Built full-stack: React.js frontends, Python FastAPI services, containerized via Docker and Kubernetes.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-header">
+          <div>
+            <div class="tl-title">Engineering Manager / Senior Architect</div>
+            <div class="tl-company">Public Partnership Limited (PPL)</div>
+          </div>
+          <span class="tl-dates">Feb 2019 – Aug 2025</span>
+        </div>
+        <ul class="tl-bullets">
+          <li>Managed a 15-person cross-functional team across 5 state government programs in Eligibility, EVV, and Payment domains.</li>
+          <li>Owned the full engineering lifecycle: architecture, sprint planning, code review, CI/CD, release management, and production support.</li>
+          <li>Led hiring, onboarding, and career development; built engineering standards that measurably reduced defect escape rates.</li>
+          <li>Introduced GenAI-assisted code conversion tooling to drive legacy Eligibility platform modernization from .NET to C#.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-header">
+          <div>
+            <div class="tl-title">Lead Technical Consultant</div>
+            <div class="tl-company">Public Consulting Group</div>
+          </div>
+          <span class="tl-dates">Feb 2015 – Feb 2019</span>
+        </div>
+        <ul class="tl-bullets">
+          <li>Delivered consulting engagements across government healthcare clients — Eligibility, claims, and benefits administration.</li>
+          <li>Architected multi-carrier API and EDI integrations with Anthem, Blue Cross, DXC, Fiserv, Humana, and ADP.</li>
+        </ul>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-header">
+          <div>
+            <div class="tl-title">Senior Software Engineer</div>
+            <div class="tl-company">Osprey Software Solutions</div>
+          </div>
+          <span class="tl-dates">Jul 2013 – Mar 2015</span>
+        </div>
+        <ul class="tl-bullets">
+          <li>Led architecture and implementation of a greenfield online insurance quoting platform (iQQ) using ASP.NET MVC and Web API 2.</li>
+          <li>Integrated real-time competitive quoting with multiple insurance carriers including Anthem and Humana.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label">Featured Work</p>
+    <h2>Key Projects</h2>
+    <div class="divider"></div>
+    <div class="projects-grid">
+
+      <div class="proj-card">
+        <div class="proj-icon">🏥</div>
+        <h3>Medicaid Payment Platform</h3>
+        <div class="proj-role">AI Architect · Connect2Coverage</div>
+        <p>Greenfield, cloud-native Medicaid payment platform built for multi-state compliance. Covers caregiver enrollment (Family-Directed Services), multi-state provider registration, real-time EVV tracking, and ACH/Stripe/ADP payment disbursements — all HIPAA-compliant from day one.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Microservices</span><span class="proj-tag">Kafka</span><span class="proj-tag">Kubernetes</span>
+          <span class="proj-tag">ML Fraud Detection</span><span class="proj-tag">React.js</span><span class="proj-tag">FastAPI</span><span class="proj-tag">HIPAA</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">🔍</div>
+        <h3>Eligibility Verification System</h3>
+        <div class="proj-role">Engineering Manager / Architect · PPL</div>
+        <p>Enterprise eligibility verification platform for state Medicaid programs — real-time eligibility checks, multi-carrier data exchange, and automated enrollment workflows. Designed the data warehouse and API integration layer to support 5 states with isolated compliance boundaries and high-availability SLAs.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">Eligibility</span><span class="proj-tag">EDI Integrations</span><span class="proj-tag">Data Warehouse</span>
+          <span class="proj-tag">Snowflake</span><span class="proj-tag">Azure DevOps</span><span class="proj-tag">Medicaid</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">🤖</div>
+        <h3>GenAI-Assisted Platform Modernization</h3>
+        <div class="proj-role">Engineering Manager · PPL</div>
+        <p>Led the modernization of a legacy .NET Eligibility platform to modern C# using GenAI-assisted code conversion tooling. Built the human-in-the-loop review workflow to validate LLM output quality, cutting migration time significantly while maintaining correctness across compliance-critical codepaths.</p>
+        <div class="proj-tags">
+          <span class="proj-tag">GenAI</span><span class="proj-tag">LLMs</span><span class="proj-tag">.NET → C#</span>
+          <span class="proj-tag">Code Migration</span><span class="proj-tag">Human-in-the-Loop</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION & CERTS -->
+<section id="education">
+  <div class="container">
+    <p class="section-label">Credentials</p>
+    <h2>Education &amp; Certifications</h2>
+    <div class="divider"></div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-icon">🎓</div>
+        <div>
+          <h4>M.S. Computer Science</h4>
+          <p>Birla Institute of Technology, India</p>
+        </div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon">🤖</div>
+        <div>
+          <h4>Post-Graduate Diploma — Generative AI &amp; ML</h4>
+          <p>Illinois Institute of Technology</p>
+        </div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon">☁️</div>
+        <div>
+          <h4>AWS Certified Cloud Practitioner</h4>
+          <p>Amazon Web Services · Nov 2024</p>
+        </div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon">🔷</div>
+        <div>
+          <h4>Microsoft Certified: Azure Fundamentals (AZ-900)</h4>
+          <p>Microsoft · Nov 2024</p>
+        </div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon">📋</div>
+        <div>
+          <h4>SAFe / Scrum Certified &amp; PMP</h4>
+          <p>Project &amp; Agile Delivery</p>
+        </div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon">🧮</div>
+        <div>
+          <h4>B.S. Mathematics</h4>
+          <p>Analytical &amp; Quantitative Foundation</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <h2>Let's Connect</h2>
+    <p>Open to Engineering Manager and Principal/Staff Architect roles in healthcare tech, insurtech, or regulated industries.</p>
+    <div class="contact-buttons">
+      <a href="mailto:banand2k1@gmail.com" class="btn btn-primary">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        banand2k1@gmail.com
+      </a>
+      <a href="https://linkedin.com/in/bhaskarananda" target="_blank" rel="noopener" class="btn btn-outline">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Bhaskar Anand · Boston, MA · US Permanent Resident · No Sponsorship Required</p>
+</footer>
+
+</body>
+</html>
