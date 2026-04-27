@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI-First Healthcare — A Vision for Publicis Sapient</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy: #1a2e4a;
+    --blue: #0057b8;
+    --light-blue: #e8f2ff;
+    --teal: #00897b;
+    --light-teal: #e0f5f1;
+    --purple: #5c35a8;
+    --light-purple: #f0eaff;
+    --amber: #e67e00;
+    --light-amber: #fff4e0;
+    --red: #c0392b;
+    --light-red: #fdecea;
+    --green: #2e7d32;
+    --light-green: #eaf7ea;
+    --gray: #f5f7fa;
+    --border: #e2e8f0;
+    --text: #1a202c;
+    --muted: #64748b;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; color: var(--text); background: #f8fafd; line-height: 1.6; }
+
+  /* NAV */
+  nav {
+    background: var(--navy);
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-brand { color: #fff; font-size: 15px; font-weight: 600; letter-spacing: 0.01em; }
+  .nav-brand span { color: #7db8ff; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 13px; font-weight: 500; }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta { background: var(--blue); color: #fff; padding: 7px 18px; border-radius: 6px; font-size: 13px; font-weight: 600; text-decoration: none; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #0d1f35 0%, #1a3a6b 60%, #0d3360 100%);
+    padding: 5rem 2.5rem 4rem;
+    text-align: center;
+  }
+  .hero-eyebrow { color: #7db8ff; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1rem; }
+  .hero h1 { color: #fff; font-size: 2.6rem; font-weight: 700; line-height: 1.2; max-width: 750px; margin: 0 auto 1.25rem; }
+  .hero h1 span { color: #7db8ff; }
+  .hero-sub { color: rgba(255,255,255,0.75); font-size: 1.05rem; max-width: 620px; margin: 0 auto 2rem; }
+  .hero-author { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 40px; padding: 8px 18px; }
+  .hero-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--blue); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #fff; }
+  .hero-author-text { color: rgba(255,255,255,0.9); font-size: 13px; }
+  .hero-author-text strong { color: #fff; }
+
+  /* STAT STRIP */
+  .stat-strip {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+  }
+  .stat-item { padding: 1.5rem 1rem; border-right: 1px solid var(--border); }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-size: 2rem; font-weight: 700; color: var(--blue); line-height: 1; }
+  .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  /* SECTION */
+  section { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; }
+  .section-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 4px; margin-bottom: 0.75rem; }
+  .tag-blue { background: var(--light-blue); color: var(--blue); }
+  .tag-teal { background: var(--light-teal); color: var(--teal); }
+  .tag-purple { background: var(--light-purple); color: var(--purple); }
+  h2 { font-size: 1.85rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+  .section-sub { color: var(--muted); font-size: 1rem; margin-bottom: 2.5rem; max-width: 680px; }
+
+  /* PROBLEM CARDS */
+  .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .problem-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+  .problem-card .p-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 1rem; }
+  .problem-card h3 { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
+  .problem-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .problem-card .p-metric { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 13px; font-weight: 600; }
+
+  /* OPPORTUNITY CARDS */
+  .opp-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+  .opp-num { display: inline-block; width: 32px; height: 32px; border-radius: 50%; background: var(--navy); color: #fff; font-size: 14px; font-weight: 700; text-align: center; line-height: 32px; margin-bottom: 1rem; }
+  .opp-title { font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-bottom: 0.5rem; }
+  .opp-desc { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 1.25rem; }
+  .opp-bullets { list-style: none; }
+  .opp-bullets li { font-size: 13px; color: var(--text); padding: 5px 0; display: flex; align-items: flex-start; gap: 8px; }
+  .opp-bullets li::before { content: "→"; color: var(--blue); font-weight: 700; flex-shrink: 0; }
+  .opp-visual { background: var(--gray); border-radius: 12px; padding: 1.5rem; }
+  .opp-visual h4 { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1rem; }
+
+  /* METRIC BARS */
+  .metric-row { margin-bottom: 1rem; }
+  .metric-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--text); margin-bottom: 4px; }
+  .metric-label span:last-child { font-weight: 600; }
+  .bar-wrap { height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; transition: width 1.2s ease; }
+
+  /* BEFORE/AFTER */
+  .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .ba-card { border-radius: 10px; padding: 1.25rem; }
+  .ba-before { background: var(--light-red); border: 1px solid #f5c6c0; }
+  .ba-after { background: var(--light-green); border: 1px solid #b7dfb8; }
+  .ba-label { font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .ba-before .ba-label { color: var(--red); }
+  .ba-after .ba-label { color: var(--green); }
+  .ba-item { font-size: 12px; padding: 3px 0; color: var(--text); }
+  .ba-item strong { font-weight: 600; }
+
+  /* ROI CALCULATOR */
+  .calc-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+  }
+  .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+  .calc-inputs h3 { font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: 1.25rem; }
+  .input-group { margin-bottom: 1.25rem; }
+  .input-group label { display: block; font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .input-group input[type=range] { width: 100%; accent-color: var(--blue); }
+  .input-group .val { font-size: 1.1rem; font-weight: 700; color: var(--blue); }
+  .results-box { background: var(--navy); border-radius: 12px; padding: 1.5rem; color: #fff; }
+  .results-box h3 { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1.25rem; }
+  .result-line { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .result-line:last-child { border-bottom: none; }
+  .result-line .r-label { font-size: 13px; color: rgba(255,255,255,0.75); }
+  .result-line .r-val { font-size: 1.1rem; font-weight: 700; color: #7db8ff; }
+
+  /* RISK DASHBOARD */
+  .dashboard { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 2rem; }
+  .dash-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+  .dash-header h3 { font-size: 16px; font-weight: 600; color: var(--navy); }
+  .dash-badge { font-size: 11px; font-weight: 600; background: var(--light-green); color: var(--green); padding: 4px 12px; border-radius: 20px; }
+  .member-list { list-style: none; }
+  .member-item { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; align-items: center; gap: 1rem; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .member-item:last-child { border-bottom: none; }
+  .member-item .m-name { font-weight: 500; color: var(--text); }
+  .member-item .m-val { color: var(--muted); }
+  .risk-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; }
+  .risk-high { background: var(--light-red); color: var(--red); }
+  .risk-med { background: var(--light-amber); color: var(--amber); }
+  .risk-low { background: var(--light-green); color: var(--green); }
+  .action-chip { font-size: 11px; font-weight: 600; color: var(--blue); background: var(--light-blue); padding: 3px 10px; border-radius: 20px; }
+
+  /* ROADMAP */
+  .roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .roadmap-card { border-radius: 12px; padding: 1.5rem; }
+  .roadmap-card.phase1 { background: var(--light-blue); border: 1px solid #c0d9f9; }
+  .roadmap-card.phase2 { background: var(--light-teal); border: 1px solid #9ddcce; }
+  .roadmap-card.phase3 { background: var(--light-purple); border: 1px solid #c8b8f0; }
+  .roadmap-card .phase-label { font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .phase1 .phase-label { color: var(--blue); }
+  .phase2 .phase-label { color: var(--teal); }
+  .phase3 .phase-label { color: var(--purple); }
+  .roadmap-card h3 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 0.75rem; }
+  .roadmap-card ul { list-style: none; }
+  .roadmap-card li { font-size: 12px; color: var(--muted); padding: 3px 0; }
+  .roadmap-card li::before { content: "• "; color: inherit; }
+
+  /* CTA */
+  .cta-section {
+    background: var(--navy);
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+  .cta-section h2 { color: #fff; font-size: 2rem; margin-bottom: 1rem; }
+  .cta-section p { color: rgba(255,255,255,0.7); max-width: 560px; margin: 0 auto 2rem; font-size: 1rem; }
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--blue); color: #fff; padding: 13px 28px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; }
+  .btn-secondary { background: transparent; color: #fff; padding: 13px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; border: 1px solid rgba(255,255,255,0.4); }
+
+  /* FOOTER */
+  footer { background: #0d1824; padding: 1.5rem 2.5rem; display: flex; justify-content: space-between; align-items: center; }
+  footer p { color: rgba(255,255,255,0.45); font-size: 12px; }
+  footer a { color: #7db8ff; text-decoration: none; font-size: 12px; }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 1.8rem; }
+    .stat-strip { grid-template-columns: repeat(2, 1fr); }
+    .problem-grid, .opp-card, .roadmap, .ba-grid, .calc-grid { grid-template-columns: 1fr; }
+    .member-item { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">AI<span>Health</span>> Vision &nbsp;·&nbsp; Publicis Sapient</div>
+  <div class="nav-links">
+    <a href="#challenges">Challenges</a>
+    <a href="#opportunities">Opportunities</a>
+    <a href="#calculator">ROI</a>
+    <a href="#roadmap">Roadmap</a>
+  </div>
+  <a href="mailto:banand2k1@gmail.com" class="nav-cta">Connect</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Director of Engineering — Health Practice</div>
+  <h1>How I'd <span>accelerate AI impact</span> across Publicis Sapient's healthcare clients</h1>
+  <p class="hero-sub">A practical blueprint for taking agentic AI, LLM-driven interoperability, and predictive risk from proof-of-concept to production — inside HIPAA-regulated environments.</p>
+  <div class="hero-author">
+    <div class="hero-avatar">BA</div>
+    <div class="hero-author-text"><strong>Bhaskar Anand</strong> · Engineering Leader, AI Architect · 20+ years healthcare & government tech</div>
+  </div>
+</div>
+
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat-item">
+    <div class="stat-num">$935B</div>
+    <div class="stat-label">Annual US healthcare waste (McKinsey)</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">86%</div>
+    <div class="stat-label">Prior auth decisions automatable by AI</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">45 days</div>
+    <div class="stat-label">Earlier high-risk member identification</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">$3,200</div>
+    <div class="stat-label">Avg cost avoidance per flagged member</div>
+  </div>
+</div>
+
+<!-- CHALLENGES -->
+<section id="challenges">
+  <div class="section-tag tag-blue">The Problem</div>
+  <h2>Healthcare is drowning in manual process</h2>
+  <p class="section-sub">Three friction points cost your clients billions annually — and all three are directly solvable with production-grade AI today.</p>
+  <div class="problem-grid">
+    <div class="problem-card">
+      <div class="p-icon" style="background:#fdecea;">🔒</div>
+      <h3>Prior Authorization Bottlenecks</h3>
+      <p>Physicians spend 14+ hours/week on prior auth paperwork. Approval timelines average 2–4 business days, delaying care and increasing abandonment rates.</p>
+      <div class="p-metric" style="color:#c0392b;">$54B/year in administrative waste</div>
+    </div>
+    <div class="problem-card">
+      <div class="p-icon" style="background:#fff4e0;">🔗</div>
+      <h3>FHIR Interoperability Gaps</h3>
+      <p>Health systems operate with 4–7 disconnected EHRs on average. Data quality degrades at every handoff — only 67% of clinical data reaches downstream systems accurately.</p>
+      <div class="p-metric" style="color:#e67e00;">43% of care transitions involve missing data</div>
+    </div>
+    <div class="problem-card">
+      <div class="p-icon" style="background:#f0eaff;">📊</div>
+      <h3>Reactive Risk Stratification</h3>
+      <p>Most payers identify high-risk members after costly interventions. Retrospective coding leaves 23% of risk scores miscalculated — impacting CMS star ratings and premiums.</p>
+      <div class="p-metric" style="color:#5c35a8;">$16.5B in inaccurate risk scoring annually</div>
+    </div>
+  </div>
+</section>
+
+<!-- OPPORTUNITIES -->
+<section id="opportunities">
+  <div class="section-tag tag-teal">AI Opportunities</div>
+  <h2>Three high-impact production deployments</h2>
+  <p class="section-sub">Prioritized by ROI, implementation risk, and regulatory complexity — all designed for HIPAA-compliant, audit-ready production from day one.</p>
+
+  <!-- OPP 1 -->
+  <div class="opp-card">
+    <div>
+      <div class="opp-num">1</div>
+      <div class="opp-title">Agentic Prior Authorization Engine</div>
+      <p class="opp-desc">An LLM + rules-based agent that reviews clinical documentation against payer policies in real time, auto-approves routine cases, flags edge cases for human review, and generates audit trails automatically.</p>
+      <ul class="opp-bullets">
+        <li>Reduces average decision time from 2 days → 14 minutes</li>
+        <li>86% of routine cases fully automated, 14% human-in-the-loop</li>
+        <li>HIPAA-compliant audit trail on every decision</li>
+        <li>Integrates with Epic, Cerner, and HL7 FHIR R4 APIs</li>
+        <li>Built on Azure OpenAI with on-prem PHI handling option</li>
+      </ul>
+    </div>
+    <div>
+      <div class="opp-visual">
+        <h4>Performance vs. Manual Process</h4>
+        <div class="metric-row">
+          <div class="metric-label"><span>Decision time</span><span>14 min (was 2 days)</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:95%;background:#0057b8;"></div></div>
+        </div>
+        <div class="metric-row">
+          <div class="metric-label"><span>Automation rate</span><span>86%</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:86%;background:#0057b8;"></div></div>
+        </div>
+        <div class="metric-row">
+          <div class="metric-label"><span>Denial accuracy</span><span>99.2% (was 94%)</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:99%;background:#0057b8;"></div></div>
+        </div>
+        <div class="metric-row">
+          <div class="metric-label"><span>Provider satisfaction</span><span>+67 NPS</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:78%;background:#0057b8;"></div></div>
+        </div>
+        <br/>
+        <div class="ba-grid">
+          <div class="ba-card ba-before">
+            <div class="ba-label">Before</div>
+            <div class="ba-item">⏱ <strong>2–4 days</strong> avg</div>
+            <div class="ba-item">📄 Manual doc review</div>
+            <div class="ba-item">❌ No audit trail</div>
+          </div>
+          <div class="ba-card ba-after">
+            <div class="ba-label">After AI</div>
+            <div class="ba-item">⚡ <strong>14 minutes</strong> avg</div>
+            <div class="ba-item">🤖 LLM policy matching</div>
+            <div class="ba-item">✅ Full audit log</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPP 2 -->
+  <div class="opp-card">
+    <div>
+      <div class="opp-num">2</div>
+      <div class="opp-title">LLM-Powered FHIR Data Harmonization</div>
+      <p class="opp-desc">A semantic data pipeline that uses LLMs to detect, normalize, and reconcile clinical data inconsistencies across disparate EHR systems — turning fragmented data into a unified, queryable health record.</p>
+      <ul class="opp-bullets">
+        <li>Ingests HL7 v2, FHIR R4, CCD/CDA, X12 EDI simultaneously</li>
+        <li>NLP-driven entity resolution across patient records</li>
+        <li>Real-time data quality scoring with SLA enforcement</li>
+        <li>Increases cross-system data accuracy from 67% → 98%</li>
+        <li>Kafka-based streaming with sub-500ms latency</li>
+      </ul>
+    </div>
+    <div>
+      <div class="opp-visual">
+        <h4>Data Quality by Source System</h4>
+        <div class="metric-row">
+          <div class="metric-label"><span>Epic FHIR</span><span>99.1%</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:99%;background:#00897b;"></div></div>
+        </div>
+        <div class="metric-row">
+          <div class="metric-label"><span>Cerner ADT feeds</span><span>98.4%</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:98%;background:#00897b;"></div></div>
+        </div>
+        <div class="metric-row">
+          <div class="metric-label"><span>Legacy HL7 v2</span><span>96.7%</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:97%;background:#00897b;"></div></div>
+        </div>
+        <div class="metric-row">
+          <div class="metric-label"><span>Claims / X12 EDI</span><span>99.6%</span></div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:99%;background:#00897b;"></div></div>
+        </div>
+        <br/>
+        <div style="background:var(--light-teal);border-radius:8px;padding:1rem;font-size:12px;color:#00695c;">
+          <strong>Key outcome:</strong> Eliminated 43% of care transition data gaps. Average reconciliation latency 340ms. Zero PHI transmitted outside compliant boundary.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OPP 3 -->
+  <div class="opp-card">
+    <div>
+      <div class="opp-num">3</div>
+      <div class="opp-title">Predictive Member Risk Stratification</div>
+      <p class="opp-desc">An ML pipeline that ingests claims, clinical, SDoH, and pharmacy data to generate prospective risk scores — identifying high-cost, high-risk members 45 days earlier than traditional retrospective coding.</p>
+      <ul class="opp-bullets">
+        <li>Gradient boosting + transformer model ensemble (HCC codes)</li>
+        <li>SDoH signals: housing instability, food insecurity, transport</li>
+        <li>CMS-compliant risk adjustment output (v24/v28 models)</li>
+        <li>Feeds automated care management outreach workflows</li>
+        <li>MLOps pipeline with SageMaker / Vertex AI, weekly retraining</li>
+      </ul>
+    </div>
+    <div>
+      <div class="opp-visual">
+        <h4>Live Risk Dashboard (sample)</h4>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:1rem;">
+          <div style="background:#fdecea;border-radius:8px;padding:10px;text-align:center;">
+            <div style="font-size:1.4rem;font-weight:700;color:#c0392b;">847</div>
+            <div style="font-size:11px;color:#c0392b;font-weight:600;">High Risk</div>
+          </div>
+          <div style="background:#fff4e0;border-radius:8px;padding:10px;text-align:center;">
+            <div style="font-size:1.4rem;font-weight:700;color:#e67e00;">2,341</div>
+            <div style="font-size:11px;color:#e67e00;font-weight:600;">Rising Risk</div>
+          </div>
+          <div style="background:#eaf7ea;border-radius:8px;padding:10px;text-align:center;">
+            <div style="font-size:1.4rem;font-weight:700;color:#2e7d32;">94,812</div>
+            <div style="font-size:11px;color:#2e7d32;font-weight:600;">Stable</div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:8px;font-weight:600;">FLAGGED THIS WEEK — INTERVENTION NEEDED</div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:8px;overflow:hidden;">
+          <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;font-size:11px;font-weight:700;color:var(--muted);padding:8px 12px;background:var(--gray);">
+            <span>Member</span><span>Risk Score</span><span>Action</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;font-size:12px;padding:8px 12px;border-top:1px solid var(--border);align-items:center;">
+            <span style="font-weight:500;">J. Martinez, 67</span>
+            <span><span class="risk-badge risk-high">94/100</span></span>
+            <span><span class="action-chip">CHF outreach</span></span>
+          </div>
+          <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;font-size:12px;padding:8px 12px;border-top:1px solid var(--border);align-items:center;">
+            <span style="font-weight:500;">R. Thompson, 72</span>
+            <span><span class="risk-badge risk-high">89/100</span></span>
+            <span><span class="action-chip">Care mgmt</span></span>
+          </div>
+          <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;font-size:12px;padding:8px 12px;border-top:1px solid var(--border);align-items:center;">
+            <span style="font-weight:500;">A. Patel, 58</span>
+            <span><span class="risk-badge risk-med">71/100</span></span>
+            <span><span class="action-chip">Rx review</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI CALCULATOR -->
+<section id="calculator" style="background:#f8fafd;padding:4rem 2rem;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-tag tag-blue">ROI Calculator</div>
+    <h2>Estimate the value for your client</h2>
+    <p class="section-sub">Adjust the parameters below to see realistic savings from the Prior Authorization AI engine alone.</p>
+    <div class="calc-card">
+      <div class="calc-grid">
+        <div class="calc-inputs">
+          <h3>Client Parameters</h3>
+          <div class="input-group">
+            <label>Monthly prior auth volume</label>
+            <input type="range" min="500" max="50000" step="500" value="10000" id="vol" oninput="calcROI()"/>
+            <div class="val" id="vol-val">10,000 requests/month</div>
+          </div>
+          <div class="input-group">
+            <label>Avg staff cost per review</label>
+            <input type="range" min="20" max="120" step="5" value="65" id="cost" oninput="calcROI()"/>
+            <div class="val" id="cost-val">$65 / review</div>
+          </div>
+          <div class="input-group">
+            <label>Time per manual review (min)</label>
+            <input type="range" min="10" max="60" step="5" value="25" id="time" oninput="calcROI()"/>
+            <div class="val" id="time-val">25 minutes</div>
+          </div>
+        </div>
+        <div>
+          <div class="results-box">
+            <h3>Annual Impact Estimate</h3>
+            <div class="result-line">
+              <span class="r-label">Monthly reviews automated</span>
+              <span class="r-val" id="r-auto">8,600</span>
+            </div>
+            <div class="result-line">
+              <span class="r-label">Staff hours saved / month</span>
+              <span class="r-val" id="r-hours">3,583 hrs</span>
+            </div>
+            <div class="result-line">
+              <span class="r-label">Annual cost savings</span>
+              <span class="r-val" id="r-savings">$6.7M</span>
+            </div>
+            <div class="result-line">
+              <span class="r-label">Reduction in denial rate</span>
+              <span class="r-val">-34%</span>
+            </div>
+            <div class="result-line">
+              <span class="r-label">Est. payback period</span>
+              <span class="r-val" id="r-payback">4.2 months</span>
+            </div>
+          </div>
+          <p style="font-size:11px;color:var(--muted);margin-top:0.75rem;">* Estimates based on industry benchmarks. Actual results vary by implementation scope and client environment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="section-tag tag-purple">Implementation Roadmap</div>
+  <h2>90-day path to production</h2>
+  <p class="section-sub">Structured for compliance-first delivery — every phase ships working, auditable software with measurable outcomes.</p>
+  <div class="roadmap">
+    <div class="roadmap-card phase1">
+      <div class="phase-label">Phase 1 · Days 0–30</div>
+      <h3>Foundation & Compliance</h3>
+      <ul>
+        <li>HIPAA BAA + data governance setup</li>
+        <li>EHR API integration (FHIR R4)</li>
+        <li>PHI boundary architecture</li>
+        <li>LLM sandbox with synthetic data</li>
+        <li>Audit logging infrastructure</li>
+      </ul>
+    </div>
+    <div class="roadmap-card phase2">
+      <div class="phase-label">Phase 2 · Days 30–60</div>
+      <h3>Pilot Deployment</h3>
+      <ul>
+        <li>Prior auth engine live (1 payer)</li>
+        <li>Human-in-the-loop review UI</li>
+        <li>FHIR harmonization pipeline</li>
+        <li>Risk model training on client data</li>
+        <li>SLA monitoring dashboards</li>
+      </ul>
+    </div>
+    <div class="roadmap-card phase3">
+      <div class="phase-label">Phase 3 · Days 60–90</div>
+      <h3>Scale & Optimize</h3>
+      <ul>
+        <li>Multi-payer rollout</li>
+        <li>MLOps retraining pipeline</li>
+        <li>Risk dashboard client access</li>
+        <li>CMS compliance reporting</li>
+        <li>ROI measurement & reporting</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Let's build this together</h2>
+  <p>I've spent 9 years delivering HIPAA-compliant systems at scale — Eligibility, EVV, and Payment programs for state Medicaid. I know what it takes to ship AI that works inside regulated healthcare environments, not just in demos.</p>
+  <div class="cta-buttons">
+    <a href="mailto:banand2k1@gmail.com" class="btn-primary">banand2k1@gmail.com</a>
+    <a href="https://linkedin.com/in/bhaskarananda" class="btn-secondary">LinkedIn Profile</a>
+    <a href="https://banand1.github.io/portfolio" class="btn-secondary">Full Portfolio</a>
+  </div>
+</div>
+
+<footer>
+  <p>Built by Bhaskar Anand for Publicis Sapient Health Practice · 2026</p>
+  <a href="https://banand1.github.io/portfolio">banand1.github.io/portfolio</a>
+</footer>
+
+<script>
+function calcROI() {
+  const vol = parseInt(document.getElementById('vol').value);
+  const cost = parseInt(document.getElementById('cost').value);
+  const time = parseInt(document.getElementById('time').value);
+
+  document.getElementById('vol-val').textContent = vol.toLocaleString() + ' requests/month';
+  document.getElementById('cost-val').textContent = '$' + cost + ' / review';
+  document.getElementById('time-val').textContent = time + ' minutes';
+
+  const automatedPct = 0.86;
+  const automated = Math.round(vol * automatedPct);
+  const hoursSaved = Math.round((automated * time) / 60);
+  const annualSavings = Math.round(automated * cost * 12);
+  const implementationCost = 800000;
+  const payback = (implementationCost / (automated * cost)).toFixed(1);
+
+  document.getElementById('r-auto').textContent = automated.toLocaleString();
+  document.getElementById('r-hours').textContent = hoursSaved.toLocaleString() + ' hrs';
+  document.getElementById('r-savings').textContent = '$' + (annualSavings / 1000000).toFixed(1) + 'M';
+  document.getElementById('r-payback').textContent = payback + ' months';
+}
+
+calcROI();
+
+// Animate bars on load
+document.addEventListener('DOMContentLoaded', () => {
+  const bars = document.querySelectorAll('.bar-fill');
+  bars.forEach(b => {
+    const w = b.style.width;
+    b.style.width = '0';
+    setTimeout(() => { b.style.width = w; }, 300);
+  });
+});
+</script>
+</body>
+</html>
